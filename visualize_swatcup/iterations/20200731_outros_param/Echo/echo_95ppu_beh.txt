@@ -1,0 +1,9 @@
+echo of SUFI2_95ppu_beh.exe
+--------------------------------------
+Max size of arrays:
+Max number of simulations=     2,000
+Max number of observed data=   30,000
+Max number of obs. variables=  30
+Max number of parameters=      500
+-------------------------------------
+

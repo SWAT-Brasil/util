@@ -1,0 +1,18 @@
+--- echo of SUFI2_95ppu.CPP
+--------------------------------------
+Max size of arrays:
+Max number of simulations=    2,000
+Max number of observed data=  30,000
+Max number of obs. variables= 30
+Max number of parameters=     500
+-------------------------------------
+
+number of parameters=   48
+number of simulation=   1
+-------------------- Reading observed.txt --------------
+total number of variables=  1
+obj fn type=  8
+behavioral threshold=  -2.000000
+Power of MSN=  1.000000
+FLOW_OUT_11.txt  
+file_name 1 = FLOW_OUT_11.txt

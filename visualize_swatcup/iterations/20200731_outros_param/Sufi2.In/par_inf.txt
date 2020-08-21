@@ -1,0 +1,95 @@
+  9  : Number of Parameters (the program only reads the first 4 parameters or any number indicated here)
+100  : number of simulations
+
+v__GW_REVAP.gw             0.0       0.2
+v__ESCO.hru                0.8       1.0
+v__CH_N2.rte	           0.0       0.3
+v__CH_K2.rte	           5.0       130.0
+v__ALPHA_BNK.rte           0.0       1.0
+r__SOL_AWC(1).sol         -0.2       0.4
+r__SOL_K(1).sol	          -0.8       0.8
+r__SOL_BD(1).sol          -0.5       0.6
+v__SFTMP.bsn              -5.0       5.0
+
+
+
+-----------------
+r__CN2.mgt                 -0.2      0.2
+v__ALPHA_BF.gw             0.0       1.0
+v__GW_DELAY.gw	           30.0      450.0
+v__GWQMN.gw                0.0       2.0
+
+
+
+
+
+-----------------
+v__GW_REVAP.gw             0.0       0.2
+v__ESCO.hru                0.8       1.0
+v__CH_N2.rte	           0.0       0.3
+v__CH_K2.rte	           5.0       130.0
+v__ALPHA_BNK.rte           0.0       1.0
+r__SOL_AWC(1).sol         -0.2       0.4
+r__SOL_K(1).sol	          -0.8       0.8
+r__SOL_BD(1).sol          -0.5       0.6
+v__SFTMP.bsn              -5.0       5.0
+
+
+
+--------------------------------------------------
+example of parameterization:
+
+r__Precipitation(){1990001-2000265}.pcp  0  0.4
+r__AUTO_EFF{[],11,AUTO_NSTRS=0.6}.mgt  0.2  0.6
+r__BLAI{22}.crop.dat  2  8
+
+
+
+-----------------------------------------
+
+r__CN2.mgt________1	        -0.2       0.2
+r__SOL_AWC(1).sol________1      -0.2       0.1
+r__SOL_K(1).sol________1	-0.8       0.8
+r__SOL_BD(1).sol________1       -0.5       0.6
+a__GWQMN.gw________1             0.0      25.0
+a__GW_REVAP.gw________1         -0.1       0.0
+v__REVAPMN.gw________1           0.0      10.0
+a__ESCO.hru________1             0.0       0.2
+r__HRU_SLP.hru________1          0.0       0.2
+r__OV_N.hru________1            -0.2       0.0
+r__SLSUBBSN.hru________1         0.0       0.2
+
+
+
+r__CN2.mgt________3-6	          -0.2       0.2
+r__SOL_AWC(1).sol________3-6      -0.2       0.1
+r__SOL_K(1).sol________3-6	  -0.8       0.8
+r__SOL_BD(1).sol________3-6       -0.5       0.6
+a__GWQMN.gw________3-6             0.0      25.0
+a__GW_REVAP.gw________3-6         -0.1       0.0
+v__REVAPMN.gw________3-6           0.0      10.0
+a__ESCO.hru________3-6             0.0       0.2
+r__HRU_SLP.hru________3-6          0.0       0.2
+r__OV_N.hru________3-6            -0.2       0.0
+r__SLSUBBSN.hru________3-6         0.0       0.2
+
+
+r__CN2.mgt________7,12,15,16-20	          -0.2       0.2
+r__SOL_AWC(1).sol________7,12,15,16-20     -0.2       0.1
+r__SOL_K(1).sol________7,12,15,16-20	  -0.8       0.8
+r__SOL_BD(1).sol________7,12,15,16-20      -0.5       0.6
+a__GWQMN.gw________7,12,15,16-20            0.0      25.0
+a__GW_REVAP.gw________7,12,15,16-20        -0.1       0.0
+v__REVAPMN.gw________7,12,15,16-20          0.0       10.0
+a__ESCO.hru________7,12,15,16-20            0.0       0.2
+r__HRU_SLP.hru________7,12,15,16-20         0.0       0.2
+r__OV_N.hru________7,12,15,16-20           -0.2       0.0
+r__SLSUBBSN.hru________7,12,15,16-20        0.0       0.2
+
+
+v__ALPHA_BF.gw             0.0       1.0
+v__GW_DELAY.gw	           30.0      450.0
+v__CH_N2.rte	           0.0       0.3
+v__CH_K2.rte	           5.0       130.0
+v__ALPHA_BNK.rte           0.0       1.0
+v__SFTMP.bsn              -5.0       5.0

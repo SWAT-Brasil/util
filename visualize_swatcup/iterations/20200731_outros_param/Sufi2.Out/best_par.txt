@@ -1,0 +1,25 @@
+Goal_type= Nash_Sutcliff    No_sims= 100     Best_sim_no= 53    Best_goal = -3.478726e+001
+
+ Parameter_Name           Fitted_Value     Min_value      Max_value
+1:V__GW_REVAP.gw        0.093000        0.000000       0.200000
+2:V__ESCO.hru           0.835000        0.800000       1.000000
+3:V__CH_N2.rte          0.244500        0.000000       0.300000
+4:V__CH_K2.rte          125.625000      5.000000       130.000000
+5:V__ALPHA_BNK.rte      0.005000        0.000000       1.000000
+6:R__SOL_AWC(..).sol    0.217000        -0.200000      0.400000
+7:R__SOL_K(..).sol      0.712000        -0.800000      0.800000
+8:R__SOL_BD(..).sol     -0.076500       -0.500000      0.600000
+9:V__SFTMP.bsn          -0.650000       -5.000000      5.000000
+
+
+    0.093000     0.835000     0.244500   125.625000     0.005000     0.217000     0.712000    -0.076500    -0.650000
+
+v__GW_REVAP.gw                0.093000
+v__ESCO.hru                   0.835000
+v__CH_N2.rte                  0.244500
+v__CH_K2.rte                  125.625000
+v__ALPHA_BNK.rte              0.005000
+r__SOL_AWC(1).sol             0.217000
+r__SOL_K(1).sol               0.712000
+r__SOL_BD(1).sol              -0.076500
+v__SFTMP.bsn                  -0.650000

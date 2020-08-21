@@ -1,0 +1,23 @@
+1       : number of observed variables
+
+SURQ_1  : this is the name of the variable and the subbasin number to be included in the objective function
+17      : number of data points for this variable as it follows below. First column is a sequential number from beginning 
+        : of the simulation, second column is variable name and date (format arbitrary), third column is variable value. 
+
+1	SURQ_1_1990.4	20.5913
+2	SURQ_1_1990.5	10.8188
+10	SURQ_1_1990.10	1.906
+11	SURQ_1_1990.11	10.4995
+12	SURQ_1_1990.12	0.3348
+13	SURQ_1_1991.1	20.5686
+14	SURQ_1_1991.2	10.7132
+15	SURQ_1_1991.3	20.4877
+16	SURQ_1_1991.4	30.5748
+17	SURQ_1_1991.5	12.199
+18	SURQ_1_1991.6	10.5848
+19	SURQ_1_1991.7	30.1127
+20	SURQ_1_1991.8	10.0012
+21	SURQ_1_1991.9	20.8347
+22	SURQ_1_1991.10	0.1539
+23	SURQ_1_1991.11	10.3731
+24	SURQ_1_1991.12	10.1817

@@ -1,0 +1,13 @@
+Echo of SUFI2_make_input.cpp program
+--------------------------------------
+number of parameters=   9
+number of simulation=   100
+1   v__GW_REVAP.gw     0.000000     0.200000
+2   v__ESCO.hru     0.800000     1.000000
+3   v__CH_N2.rte     0.000000     0.300000
+4   v__CH_K2.rte     5.000000     130.000000
+5   v__ALPHA_BNK.rte     0.000000     1.000000
+6   r__SOL_AWC(1).sol     -0.200000     0.400000
+7   r__SOL_K(1).sol     -0.800000     0.800000
+8   r__SOL_BD(1).sol     -0.500000     0.600000
+9   v__SFTMP.bsn     -5.000000     5.000000

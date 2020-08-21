@@ -1,0 +1,62 @@
+--- echo of SUFI2_95ppu.CPP
+--------------------------------------
+Max size of arrays:
+Max number of simulations=    2,000
+Max number of observed data=  30,000
+Max number of obs. variables= 30
+Max number of parameters=     500
+-------------------------------------
+
+number of parameters=   9
+number of simulation=   100
+-------------------- Reading observed.txt --------------
+total number of variables=  23
+obj fn type=  5
+behavioral threshold=  -2.000000
+Power of MSN=  1.000000
+FLOW_OUT_5.txt  
+FLOW_OUT_8.txt  
+FLOW_OUT_11.txt  
+FLOW_OUT_13.txt  
+FLOW_OUT_14.txt  
+FLOW_OUT_17.txt  
+FLOW_OUT_18.txt  
+FLOW_OUT_21.txt  
+FLOW_OUT_22.txt  
+FLOW_OUT_23.txt  
+FLOW_OUT_24.txt  
+FLOW_OUT_25.txt  
+FLOW_OUT_27.txt  
+FLOW_OUT_29.txt  
+FLOW_OUT_34.txt  
+FLOW_OUT_36.txt  
+FLOW_OUT_37.txt  
+SED_OUT_5.txt  
+SED_OUT_8.txt  
+SED_OUT_14.txt  
+SED_OUT_21.txt  
+SED_OUT_24.txt  
+SED_OUT_34.txt  
+file_name 1 = FLOW_OUT_5.txt
+file_name 2 = FLOW_OUT_8.txt
+file_name 3 = FLOW_OUT_11.txt
+file_name 4 = FLOW_OUT_13.txt
+file_name 5 = FLOW_OUT_14.txt
+file_name 6 = FLOW_OUT_17.txt
+file_name 7 = FLOW_OUT_18.txt
+file_name 8 = FLOW_OUT_21.txt
+file_name 9 = FLOW_OUT_22.txt
+file_name 10 = FLOW_OUT_23.txt
+file_name 11 = FLOW_OUT_24.txt
+file_name 12 = FLOW_OUT_25.txt
+file_name 13 = FLOW_OUT_27.txt
+file_name 14 = FLOW_OUT_29.txt
+file_name 15 = FLOW_OUT_34.txt
+file_name 16 = FLOW_OUT_36.txt
+file_name 17 = FLOW_OUT_37.txt
+file_name 18 = SED_OUT_5.txt
+file_name 19 = SED_OUT_8.txt
+file_name 20 = SED_OUT_14.txt
+file_name 21 = SED_OUT_21.txt
+file_name 22 = SED_OUT_24.txt
+file_name 23 = SED_OUT_34.txt

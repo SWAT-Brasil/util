@@ -1,0 +1,4 @@
+Goal_type= PBIAS    No_sims= 1     Best_sim_no= 1    Best_goal = 6.430973e+001
+
+Variable           p-factor  r-factor  R2    NS     bR2      MSE       SSQR       PBIAS  KGE  RSR   MNS   VOL_FR  ---  Mean_sim(Mean_obs)   StdDev_sim(StdDev_obs)
+FLOW_OUT_11        0.03      0.00      0.13  -6.68  0.0577   5.2e+002  4.2e+002   64.3  0.06  2.77  -2.06 2.80           11.25(31.52)          10.28(8.26)
