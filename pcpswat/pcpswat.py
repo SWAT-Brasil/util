@@ -291,7 +291,7 @@ def progress_bar(iterable, prefix='', suffix='', decimals=1, length=50, fill='#'
         bar = fill * filledLength + '-' * (length - filledLength)
         #print(f'\r{prefix} |{bar}| {percent}% {suffix}', end=printend)
         sys.stdout.write(f'\r{prefix} |{bar}| {percent}% {suffix}')
-        sys.stdout.flush()
+        #sys.stdout.flush()
     # Initial Call
     printProgressBar(0)
     # Update Progress Bar
