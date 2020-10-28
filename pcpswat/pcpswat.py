@@ -54,7 +54,14 @@ def read_pcp_index(file):
     :return: um dataframe pandas com as informções
     """
     print('Lendo {}'.format(file))
-    return pd.read_csv(file)
+    data = None
+    try:
+        data = pd.read_csv(file)
+    except:
+        raise ValueError('Erro abrindo arquivo {}. Verifique formato.'.format(file))
+
+    return data
+
 
 def get_pcp_pts(pcp_index):
     pts = np.column_stack((pcp_index['LONG'], pcp_index['LAT']))
@@ -238,6 +245,16 @@ def interpolate(points, values, xi, method='nearest'):
     :return: dados interpoladors
     """
     # TODO: Precisa ver como que fica os casos onde os arquivos tem dados de periodos diferentes
+    # Verifica se todos os pontos correspondem ao mesmo periodo de tempo.
+    data_len = len(values[0])
+    first_index = values[0].index[0]
+    for i in range(len(values)):
+        if data_len != len(values[i]):
+            raise ValueError('Quantidade de pontos encontrados {} diferente do esperado {} no arquivo {}. Verifique se dados corresponde ao mesmo periodo'.format(len(values[i]), data_len, values[i].name))
+        if first_index != values[i].index[0]:
+            raise ValueError('Data de inicio {} diferente do esperado {} no arquivo {}. Verifique se dados corresponde ao mesmo periodo'.format(values[i].index[0], first_index, values[i].name))
+
+
     # Esse eh o index utilziado para os dados
     index = values[0].index
     if method == 'idw':
@@ -249,7 +266,7 @@ def interpolate(points, values, xi, method='nearest'):
         for i in progress_bar(range(temporal_size), prefix='idw'):
             val = t_values[i]
             #out[i] = griddata(points, val , xi, method=method)
-            out[i] = idw(points, val , xi)
+            out[i] = idw(points, val, xi)
         out = pd.DataFrame(out)
         out.index = index
         return out
@@ -375,7 +392,7 @@ def cmd_line():
 
 def main():
     """
-    rotina princiapal caso o seja chamado pela linha de comando. As funcoes tb podem ser chamadas externamentes.
+    rotina principal caso o seja chamado pela linha de comando. As funcoes tb podem ser chamadas externamentes.
     :return:
     """
     import warnings

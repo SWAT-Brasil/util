@@ -4,6 +4,7 @@ import datetime
 import argparse
 import math
 import numpy as np
+import sys
 
 
 # Valor de NO_DATA utilizado pelo SWAT
@@ -288,7 +289,9 @@ def progress_bar(iterable, prefix='', suffix='', decimals=1, length=50, fill='#'
         percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
         filledLength = int(length * iteration // total)
         bar = fill * filledLength + '-' * (length - filledLength)
-        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end=printend)
+        #print(f'\r{prefix} |{bar}| {percent}% {suffix}', end=printend)
+        sys.stdout.write(f'\r{prefix} |{bar}| {percent}% {suffix}')
+        #sys.stdout.flush()
     # Initial Call
     printProgressBar(0)
     # Update Progress Bar
