@@ -60,6 +60,9 @@ def read_pcp_index(file):
     except:
         raise ValueError('Erro abrindo arquivo {}. Verifique formato.'.format(file))
 
+    # Corrige tamanho das letras do cabecalho para caixa alta, e retira espacos sobrando
+    data.columns = [x.upper().strip() for x in data.columns]
+
     return data
 
 
@@ -130,7 +133,7 @@ def create_pcp_index(pcp_pts, pcp_name=None, pcp_z=None, pcp_id=None):
     :param pcp_z: altitude dos pontos
     :return: dataframe em pandas com o indice
     """
-    columns = ['ID','NAME','LAT','LONG','ELEVATION']
+    columns = ['ID', 'NAME', 'LAT', 'LONG', 'ELEVATION']
     pcp_index = []
     for i, p in enumerate(pcp_pts):
         lat = p[1]
@@ -244,17 +247,6 @@ def interpolate(points, values, xi, method='nearest'):
     :param method: metodo de interpolacao
     :return: dados interpoladors
     """
-    # TODO: Precisa ver como que fica os casos onde os arquivos tem dados de periodos diferentes
-    # Verifica se todos os pontos correspondem ao mesmo periodo de tempo.
-    data_len = len(values[0])
-    first_index = values[0].index[0]
-    for i in range(len(values)):
-        if data_len != len(values[i]):
-            raise ValueError('Quantidade de pontos encontrados {} diferente do esperado {} no arquivo {}. Verifique se dados corresponde ao mesmo periodo'.format(len(values[i]), data_len, values[i].name))
-        if first_index != values[i].index[0]:
-            raise ValueError('Data de inicio {} diferente do esperado {} no arquivo {}. Verifique se dados corresponde ao mesmo periodo'.format(values[i].index[0], first_index, values[i].name))
-
-
     # Esse eh o index utilziado para os dados
     index = values[0].index
     if method == 'idw':
@@ -343,6 +335,49 @@ def save_figure(file, obs_pts, int_pts, shape=None):
     #plt.savefig(file, bbox_inches='tight')
     plt.savefig(file)
 
+
+def check_input_data(values):
+    # TODO: Precisa ver como que fica os casos onde os arquivos tem dados de periodos diferentes
+    # Verifica se todos os pontos correspondem ao mesmo periodo de tempo.
+#    data_len = len(values[0])
+#    first_index = values[0].index[0]
+#    for i in range(len(values)):
+#        if data_len != len(values[i]):
+#            raise ValueError('Quantidade de pontos encontrados ({}) diferente do esperado ({}) no arquivo {}. Verifique se dados correspondeM ao mesmo periodo'.format(len(values[i]), data_len, values[i].name))
+#        if first_index != values[i].index[0]:
+#            raise ValueError('Data de inicio ({}) diferente do esperado ({}) no arquivo {}. Verifique se dados correspondeM ao mesmo periodo'.format(values[i].index[0], first_index, values[i].name))
+    # Encontra a faixa de tempo em que existe dados para todos os pontos
+    data_len = len(values[0])
+    start_index = values[0].index[0]
+    end_index = values[0].index[-1]
+    for i in range(len(values)):
+        if start_index != values[i].index[0]:
+            print("AVISO: serie {} com periodo diferente. Utilizando data {}".format(values[i].name, start_index))
+            if start_index < values[i].index[0]:
+                start_index = values[i].index[0]
+        if end_index != values[i].index[-1]:
+            print("AVISO: serie {} com data de fim da serie diferente. Utilizando data {}".format(values[i].name, end_index))
+            if end_index > values[i].index[-1]:
+                end_index = values[i].index[-1]
+
+    # Fica somente com o overlap de tempo
+    print('Utilizando periodo de dados {} - {}'.format(start_index, end_index))
+    for i in range(len(values)):
+        values[i] = values[i][start_index:end_index]
+
+    # Covnerte para numerico
+    for i in range(len(values)):
+        try:
+            values[i] = pd.to_numeric(values[i])
+        except Exception as e:
+            raise ValueError('Erro ao converter serie {}: {}. Verifique formato.'.format(values[i].name, str(e)))
+
+
+    # Checa valores
+
+    return values
+
+
 def cmd_line():
     """
     Prepara o parsser para ler os dados inseridos pela linha de comando.
@@ -428,6 +463,8 @@ def main():
             save_figure(file, pts_observed, pts_to_interpolate, shape)
         else:
             save_figure(file, pts_observed, pts_to_interpolate)
+    print('Verificando dados...')
+    observed_data = check_input_data(observed_data)
 
     print('Interpolando...')
     interpolated_data = interpolate(pts_observed, observed_data, pts_to_interpolate, method=interpolate_method)
