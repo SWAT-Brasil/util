@@ -57,8 +57,8 @@ def read_pcp_index(file):
     data = None
     try:
         data = pd.read_csv(file)
-    except:
-        raise ValueError('Erro abrindo arquivo {}. Verifique formato.'.format(file))
+    except Exception as e:
+        raise ValueError('Erro abrindo arquivo {}: {}. Verifique formato.'.format(file, str(e)))
 
     # Corrige tamanho das letras do cabecalho para caixa alta, e retira espacos sobrando
     data.columns = [x.upper().strip() for x in data.columns]
