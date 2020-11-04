@@ -28,7 +28,7 @@ def read_pcp_file(file):
     :return: pandas series where the index is datetime and precipitation is value
     """
     print('Lendo {}'.format(file))
-    df = pd.read_csv(file, delimiter=DELIMITER, encoding=ENCODING, decimal=DECIMAL)
+    df = pd.read_csv(file, delimiter=DELIMITER, encoding=ENCODING, decimal=DECIMAL, skip_blank_lines=False)
     start_date = pd.to_datetime(df.columns[0], format='%Y%m%d')
     temp_var = df[df.columns[0]]
     serie_temp = []
@@ -37,6 +37,8 @@ def read_pcp_file(file):
         index_temp.append(start_date + datetime.timedelta(days=index))
         if row == NO_DATA:
             serie_temp.append(np.nan)
+        elif np.isnan(row):
+            raise ValueError('Erro ao ler arquivo. Verifique linhas em branco ou valores incorretos.')
         else:
             serie_temp.append(row)
     var = pd.Series(serie_temp, index_temp)
@@ -350,18 +352,27 @@ def check_input_data(values):
     data_len = len(values[0])
     start_index = values[0].index[0]
     end_index = values[0].index[-1]
+    period_mismatch = False
+    #print('Periodo de dados: {} - {}'.format(start_index, end_index))
     for i in range(len(values)):
-        if start_index != values[i].index[0]:
-            print("AVISO: serie {} com periodo diferente. Utilizando data {}".format(values[i].name, start_index))
-            if start_index < values[i].index[0]:
-                start_index = values[i].index[0]
-        if end_index != values[i].index[-1]:
-            print("AVISO: serie {} com data de fim da serie diferente. Utilizando data {}".format(values[i].name, end_index))
-            if end_index > values[i].index[-1]:
-                end_index = values[i].index[-1]
+        serie_start = values[i].index[0]
+        print('Serie {}, periodo: ({} - {}), numero de pontos: {}'.format(values[i].name, values[i].index[0], values[i].index[-1], len(values[i]) ))
+        if start_index != serie_start:
+            period_mismatch = True
+            if start_index < serie_start:
+                start_index = serie_start
+            #print("AVISO: serie {} com data inicial {} diferente de periodo. Utilizando periodo: {} - {}".format(values[i].name, serie_start, start_index, end_index))
+        serie_end = values[i].index[-1]
+        if end_index != serie_end:
+            period_mismatch = True
+            if end_index > serie_end:
+                end_index = serie_end
+            #print("AVISO: serie {} com data final {} diferente de periodo. Utilizando periodo: {} - {}".format(values[i].name, serie_end, start_index, end_index))
 
+    if period_mismatch:
+        print("AVISO: periodo das series diferente. Utilizando somente dados presentes em todas series.")
     # Fica somente com o overlap de tempo
-    print('Utilizando periodo de dados {} - {}'.format(start_index, end_index))
+    print('Periodo de dados final: {} - {}'.format(start_index, end_index))
     for i in range(len(values)):
         values[i] = values[i][start_index:end_index]
 
