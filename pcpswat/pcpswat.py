@@ -169,7 +169,7 @@ def save_pcp(pcp_index, pcp_data, pcp_folder):
     """
     file = os.path.join(pcp_folder, 'pcp.txt')
     print('Salvando {}'.format(file))
-    pcp_index.to_csv(file , index=False, decimal='.', sep=',')
+    pcp_index.to_csv(file , index=False, decimal='.', sep=',', line_terminator='\n')
     for i in range(len(pcp_index)):
         index = pcp_index.iloc[i]
         serie = pcp_data[i]
@@ -177,7 +177,7 @@ def save_pcp(pcp_index, pcp_data, pcp_folder):
         name = index['NAME']
         file = os.path.join(pcp_folder,  name + '.txt')
         print('Salvando {}'.format(file))
-        with open(file, 'w') as fo:
+        with open(file, 'w', newline='\r\n') as fo:
             fo.write('{}\n'.format(start_date.strftime('%Y%m%d')))
             serie.to_csv(fo, index=False, header=False, line_terminator='\n', na_rep=NO_DATA)
 
