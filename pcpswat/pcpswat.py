@@ -257,7 +257,7 @@ def interpolate(points, values, xi, method='nearest'):
         xi_size = len(xi)
         out = np.empty([temporal_size, xi_size])
         #for i in range(temporal_size):
-        for i in progress_bar(range(temporal_size), prefix='idw'):
+        for i in progress_bar(range(temporal_size)):
             val = t_values[i]
             #out[i] = griddata(points, val , xi, method=method)
             out[i] = idw(points, val, xi)
@@ -271,7 +271,7 @@ def interpolate(points, values, xi, method='nearest'):
         xi_size = len(xi)
         out = np.empty([temporal_size, xi_size])
         #for i in range(temporal_size):
-        for i in progress_bar(range(temporal_size), prefix='nearest'):
+        for i in progress_bar(range(temporal_size)):
             val = t_values[i]
             out[i] = griddata(points, val , xi, method='nearest')
         out = pd.DataFrame(out)
@@ -477,7 +477,7 @@ def main():
     print('Verificando dados...')
     observed_data = check_input_data(observed_data)
 
-    print('Interpolando...')
+    print('Interpolando utilizando metodo {}'.format(interpolate_method))
     interpolated_data = interpolate(pts_observed, observed_data, pts_to_interpolate, method=interpolate_method)
     if interpolate_from_shape:
         interpolated_index = create_pcp_index(pts_to_interpolate)
