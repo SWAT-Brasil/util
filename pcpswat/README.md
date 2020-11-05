@@ -16,3 +16,4 @@ qual formato o arquivo esta sendo interpretado, e oferece informações sobre qu
 
 No linux é possível verificar o tipo do arquivo utilizando o comando ```file <nome do arquivo>```. 
 No formato unix a saída é ASCII text, em windows a saida é ASCII text, with CRLF line teminator.
+
