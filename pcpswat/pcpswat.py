@@ -236,7 +236,7 @@ def idw(points, val, ipts):
     :param ipts: coordenadas dos pontos a serem interpolados
     :return: dados interpolados
     """
-    return idwr(points[:, 0], points[:, 1], val , ipts[:, 0], ipts[:, 1])
+    return idwr(points[:, 0], points[:, 1], val, ipts[:, 0], ipts[:, 1])
 
 
 def interpolate(points, values, xi, method='nearest'):
@@ -260,7 +260,12 @@ def interpolate(points, values, xi, method='nearest'):
         for i in progress_bar(range(temporal_size)):
             val = t_values[i]
             #out[i] = griddata(points, val , xi, method=method)
-            out[i] = idw(points, val, xi)
+            # Utiliza somente dados validos para interpolar (remove NaN e inf)
+            valid_num_id = np.isfinite(val)
+            if len(valid_num_id) != 0:
+                out[i] = idw(points[valid_num_id], val[valid_num_id], xi)
+            else:
+                out[i] = np.NaN
         out = pd.DataFrame(out)
         out.index = index
         return out
@@ -273,7 +278,7 @@ def interpolate(points, values, xi, method='nearest'):
         #for i in range(temporal_size):
         for i in progress_bar(range(temporal_size)):
             val = t_values[i]
-            out[i] = griddata(points, val , xi, method='nearest')
+            out[i] = griddata(points, val, xi, method='nearest')
         out = pd.DataFrame(out)
         out.index = index
         return out
